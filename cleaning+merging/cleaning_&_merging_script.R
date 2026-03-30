@@ -87,14 +87,6 @@ data22$school_type           <- ""
 data22$school_demographic    <- ""
 data22$school_classification <- ""
 data22$id                    <- ""
-data22$pcs_academic_1        <- ""
-data22$pcs_academic_2        <- ""
-data22$pcs_academic_3        <- ""
-data22$pcs_academic_4        <- ""
-data22$pcs_academic_5        <- ""
-data22$pcs_academic_6        <- ""
-data22$pcs_academic_7        <- ""
-data22$pcs_academic_8        <- ""
 
 # Recode and Rename
 data22 <- data22 %>%
@@ -112,12 +104,32 @@ data22 <- data22 %>%
     school_county  = county
   )
 
-# Re-arrange columns
+
 data22 <- data22 %>%
-  select(2, 1, 104, 105, 106, 5, 6, 107, 108, 109, 7, 3, 110, 8:10, 17:25, 26:33, 
-         52:58, 72, 77, 78, 80, 73:75, 82, 71, 76, 79, 81, 111:118, 46:51, 83:87,
-         88, 93, 100, everything()) %>%
-  select(1:66, 82:105, 67:74, 76:81, everything())
+  rename(
+    # Templeton2_A
+    feedback1_all_helpful_templeton2_A            = feedback1_all_helpful,
+    feedback2_recommend_templeton2_A              = feedback2_recommend,
+    feedback3_most_helpful_lesson_templeton2_A    = feedback3_most_helpful_lesson,
+    feedback4_least_helpful_lesson_templeton2_A   = feedback4_least_helpful_lesson,
+    feedback5_confusing_templeton2_A              = feedback5_confusing,
+    feedback6_favorite_thing_templeton2_A         = feedback6_favorite_thing,
+    feedback6_group_leader_templeton2_A           = group_leader2,
+    feedback6_life_skills_templeton2_A            = life_skills,
+    feedback6_socializing_templeton2_A            = socializing_positive_interaction,
+    feedback6_other_templeton2_A                  = other...92,
+    feedback7_change_templeton2_A                 = feedback7_change,
+    feedback7_moresessions_templeton2_A           = more_sessions,
+    feedback7_widersessions_templeton2_A          = wider_content,
+    feedback7_moregifts_templeton2_A              = more_gifts, 
+    feedback7_foodsnacks_templeton2_A             = food_snacks,
+    feedback7_funativities_templeton2_A           = more_fun_activities,
+    feedback7_change_other_templeton2_A           = other...99,
+    feedback8_other_comments_templeton2_A         = feedback8_other_comments,
+    
+  )
+
+
 
 # Merge school information 
 data22 <- data22 %>%
@@ -129,12 +141,18 @@ data22 <- data22 %>%
   ) %>%
   select(-ends_with(".info22"))
 
+colnames(data22)
+
 # Final column cleanup for Dataset A
 data22 <- data22 %>%
-  select(-c(53:60)) %>%
-  select(c(1:82, 91:96, everything()))
+  select(c(1:5, 8, 9, 10, 6, 7, 104:109, 11:100, everything()))
+
+data22 <- data22 %>%
+  select(-c(107:110))
 
 data22$project <- "Templeton_2"
+
+colnames(data22)
 
 cat("✓ Dataset A cleaned and formatted\n\n")
 
@@ -148,9 +166,11 @@ cat(strrep("-", 80), "\n")
 
 colnames(data23_wells) <- tolower(colnames(data23_wells))
 
+colnames(data23_wells)
+
 # Remove unnecessary columns
 data23_wells <- data23_wells %>%
-  select(-c(1, 2, 6, 13, 16, 17, 67:70, 75:95, 97:102))
+  select(-c(1, 2, 6, 13, 16, 17, 67:70, 67:95, 97:102))
 
 # Add uniform identifiers and empty columns
 data23_wells$study_name            <- "shamiri_5"
@@ -165,6 +185,25 @@ data23_wells$project               <- "Wellsprings"
 
 data23_wells <- data23_wells %>%
   rename(participant_id = "unique_participant_id")
+
+
+data23_wells <- data23_wells %>%
+  rename(
+    # Wellsprings_B
+    feedback1_all_helpful_wellsprings_B           = fb1helpul,
+    feedback2_recommend_wellsprings_B             = fb2recommend,
+    feedback3_confusing_wellsprings_B             = fb3confusing,
+    feedback4_enjoy_wellsprings_B                 = fb4enjoy,
+    feedback5_skilled_facilitators_wellsprings_B  = fb5skilledfacilitators,
+    feedback6_enough_time_wellsprings_B           = fb6enoughtime,
+    feedback7_life_influence_wellsprings_B        = `how do you think this program has influenced your life (at school or in your personal life)?`,
+    feedback8_gains_wellsprings_B                 = `what are some things you have gained/learned from this program?`,
+    feedback9_other_comments_wellsprings_B        = `do you have any other comments about the program ?`,
+    
+  )
+
+colnames(data23_wells)
+
 
 cat("✓ Dataset B cleaned and formatted\n\n")
 
@@ -189,27 +228,78 @@ data23_1$id                    <- ""
 data23_1$school_type           <- ""
 data23_1$project               <- "Anansi_1"
 
-# Rename columns
-data23_1 <- data23_1 %>%
-  rename(
-    timepoint = time,
-    swemwbs_1 = swembs_1,
-    swemwbs_2 = swembs_2,
-    swemwbs_3 = swembs_3,
-    swemwbs_4 = swembs_4,
-    swemwbs_5 = swembs_5,
-    swemwbs_6 = swembs_6,
-    swemwbs_7 = swembs_7
-  )
 
 # Re-arrange and drop columns
-data23_1 <- data23_1 %>%
-  select(1:54, 57:62, 64:82, 96:101, 105, everything()) %>%
-  select(-c(5, 6, 29, 86, 91:93, 100, 104, 106:170, 172:190))
 
-# Merge school information 
+
 data23_1 <- data23_1 %>%
-  left_join(school_info23, by = "school_name", suffix = c("", ".info23")) %>%
+  select(
+    # 1. Core Identifiers & Study Metadata
+    participant_id, time, study_name, study_year, project, implementer,
+    
+    # 2. Implementation Context
+    condition, school_name, school_type, school_demographic,
+    school_classification, school_county, group_name, group_leader_id, 
+    
+    # 3. Student Demographics (Common + Unique to 2023_1)
+    age, form, gender, tribe, county, home, siblings, religion, parents_home,
+    parents_dead, fathers_education, mothers_education, co_curricular,
+    sports, percieved_academic_performance,
+    
+    # 4. Clinical Scales - PHQ (Depression)
+    phq_1, phq_2, phq_3, phq_4, phq_5, phq_6, phq_7, phq_8, phq_functioning,
+    
+    # 5. Clinical Scales - GAD (Anxiety)
+    gad_1, gad_2, gad_3, gad_4, gad_5, gad_6, gad_7, gad_check, gad_functioning,
+    
+    # 6. Clinical Scales - SWEMWBS (Wellbeing)
+    swemwbs_1, swemwbs_2, swemwbs_3, swemwbs_4, swemwbs_5, swemwbs_6, swemwbs_7,
+    
+    # 7. Other Scales (MSPSS, GQ, PCS, SES)
+    starts_with("mspss_"), starts_with("gq_"), starts_with("pcs_"), starts_with("ses_"),
+    
+    # 8. Feedback & Interest
+    interview_interest, pfb_1_helpful, pfb_2_recommend, pfb_3_helpful_lesson,
+    pfb_4_lsthelpful_lesson, pfb_5_confusing, pfb_6_favorite, pfb_6_group_leader, pfb_6_life_skills,
+    pfb_6_socializing, pfb_6_other, pfb_7_changeimprove,
+    pfb_7_moresessions, pfb_7_morecontent, pfb_7_funactivities, pfb_7_other, pfb_8_comments,
+    
+    # 9. System / Miscellaneous
+    everything() # Catches "...1" and anything missed
+  )
+
+
+
+data23_1 <- data23_1 %>%
+  rename(
+    feedback1_all_helpful_anansi1_C               = pfb_1_helpful,
+    feedback2_recommend_anansi1_C                 = pfb_2_recommend,
+    feedback3_most_helpful_lesson_anansi1_C       = pfb_3_helpful_lesson,
+    feedback4_least_helpful_lesson_anansi1_C      = pfb_4_lsthelpful_lesson,
+    feedback5_confusing_anansi1_C                 = pfb_5_confusing,
+    feedback6_favorite_thing_anansi1_C            = pfb_6_favorite,
+    feedback6_favorit_groupleader_anansi1_C       = pfb_6_group_leader,
+    feedback6_favorite_lifeskills_anansi1_C       = pfb_6_life_skills,
+    feedback6_favorite_socialising_anansi1_C      = pfb_6_socializing,
+    feedback6_favorite_thing_other_anansi1_C      = pfb_6_other,
+    feedback7_change_anansi1_C                    = pfb_7_changeimprove,
+    feedback7_moresessions_anansi1_C              = pfb_7_moresessions,
+    feedback7_morecontent_anansi1_C               = pfb_7_morecontent,
+    feedback7_funactivities_anansi1_C             = pfb_7_funactivities,
+    feedback7_change_other_anansi1_C              = pfb_7_other,
+    feedback8_other_comments_anansi1_C            = pfb_8_comments
+    )
+
+
+
+# Standardize school names to uppercase in both datasets to ensure a perfect match
+data23_1 <- data23_1 %>%
+  mutate(school_name = toupper(school_name)) %>%
+  left_join(
+    school_info23 %>% mutate(school_name = toupper(school_name)), 
+    by = "school_name", 
+    suffix = c("", ".info23")
+  ) %>%
   mutate(
     school_type           = if_else(school_type == "", school_type.info23, school_type),
     school_demographic    = if_else(school_demographic == "", school_demographic.info23, school_demographic),
@@ -218,9 +308,9 @@ data23_1 <- data23_1 %>%
   ) %>%
   select(-ends_with(".info23"))
 
-# Final column cleanup for Dataset C
 data23_1 <- data23_1 %>%
-  select(c(1:51, 83, 84, 52:57, 85, 58:64, 87:92, 77, 78, 82, 95, everything()))
+  arrange(participant_id, as.numeric(time))
+
 
 cat("✓ Dataset C cleaned and formatted\n\n")
 
@@ -242,8 +332,6 @@ dfs <- lapply(dfs, function(df) {
 
 mhdp_data <- dplyr::bind_rows(dfs)
 
-mhdp_data <- mhdp_data %>%
-  select(1:88, 112:130, everything())
 
 cat("✓ Datasets merged successfully. Total rows:", nrow(mhdp_data), "\n\n")
 
@@ -255,65 +343,122 @@ cat("✓ Datasets merged successfully. Total rows:", nrow(mhdp_data), "\n\n")
 cat("6. COALESCING AND STANDARDIZING COLUMNS\n")
 cat(strrep("-", 80), "\n")
 
-# Drop unnecessary artifacts
-mhdp_data <- mhdp_data %>%
-  select(-c(13, 116, 169:172))
-
 # Coalesce similar columns that came in under different names
 mhdp_data <- mhdp_data %>%
   mutate(
     timepoint   = coalesce(timepoint, time),
     school_name = coalesce(school_name, school),
-    age         = coalesce(age, ageuc)
+    age         = coalesce(age, ageuc),
+    group       = coalesce(group, group_name),
+    study_name   = coalesce(study_name, study)
   ) %>%
-  select(-c(time, school, ageuc))
+  select(-c(time, school, ageuc, group_name))
 
-# Rename feedback columns to maintain origin tracking
-mhdp_data <- mhdp_data %>%
-  rename(
-    # Templeton2_A
-    feedback1_all_helpful_templeton2_A          = feedback1_all_helpful,
-    feedback2_recommend_templeton2_A            = feedback2_recommend,
-    feedback3_most_helpful_lesson_templeton2_A  = feedback3_most_helpful_lesson,
-    feedback4_least_helpful_lesson_templeton2_A = feedback4_least_helpful_lesson,
-    feedback5_confusing_templeton2_A            = feedback5_confusing,
-    feedback6_favorite_thing_templeton2_A       = feedback6_favorite_thing,
-    feedback7_change_templeton2_A               = feedback7_change,
-    feedback8_other_comments_templeton2_A       = feedback8_other_comments,
-    
-    # Wellsprings_B
-    feedback1_all_helpful_wellsprings_B         = fb1helpul,
-    feedback2_recommend_wellsprings_B           = fb2recommend,
-    feedback3_confusing_wellsprings_B           = fb3confusing,
-    feedback4_enjoy_wellsprings_B               = fb4enjoy,
-    feedback5_skilled_facilitators_wellsprings_B= fb5skilledfacilitators,
-    feedback6_enough_time_wellsprings_B         = fb6enoughtime,
-    feedback7_life_influence_wellsprings_B      = `how do you think this program has influenced your life (at school or in your personal life)?`,
-    feedback8_gains_wellsprings_B               = `what are some things you have gained/learned from this program?`,
-    feedback9_other_comments_wellsprings_B      = `do you have any other comments about the program ?`,
-    
-    # Anansi1_C
-    feedback1_all_helpful_anansi1_C             = pfb_1,
-    feedback2_recommend_anansi1_C               = pfb_2,
-    feedback3_most_helpful_lesson_anansi1_C     = pfb_3,
-    feedback4_least_helpful_lesson_anansi1_C    = pfb_4,
-    feedback5_confusing_anansi1_C               = pfb_5,
-    feedback6_favorite_thing_anansi1_C          = pfb_6,
-    feedback6_favorite_thing_other_anansi1_C    = pfb_6_other,
-    feedback7_change_anansi1_C                  = pfb_7,
-    feedback7_change_other_anansi1_C            = pfb_7_other,
-    feedback8_other_comments_anansi1_C          = pfb_8,
-    feedback9_questionnaire_frustration_anansi1_C = questionnaire_frustration
-  )
 
-# Final structural cleanup
-mhdp_data <- mhdp_data %>%
-  select(-c(115:127, 148:150, 152, 155)) %>%
-  select(c(1:106, 126:135, 107:114, 138:146, 116:125, 136, everything())) %>%
-  select(-146)
+
 
 cat("✓ Variables coalesced and feedback columns renamed\n\n")
 
+
+
+#-------------------------------------------------------------------------------
+# 8. STRICT COLUMN WHITELIST (Replaces fragile numeric indexing)
+#-------------------------------------------------------------------------------
+
+master_cols <- c(
+  # --- Core Identifiers & Study Metadata ---
+  "timepoint", "participant_id", "id",
+  "study", "study_name", "study_year",
+  "project", "implementer", "condition",
+  "group", "group_leader", "group_leader_id",
+  
+  # --- School Information ---
+  "school_name", "school_county", "school_type",
+  "school_demographic", "school_classification", "form_stream",
+  
+  # --- Demographics & Background ---
+  "age", "form", "gender",
+  "tribe", "county", "home",
+  "siblings", "religion", "parents_home",
+  "parents_dead", "fathers_education", "mothers_education",
+  "co_curricular", "sports", "percieved_academic_performance",
+  
+  # --- Clinical Scales: PHQ-8 (Depression) & GAD-7 (Anxiety) ---
+  "phq_1", "phq_2", "phq_3",
+  "phq_4", "phq_5", "phq_6",
+  "phq_7", "phq_8", "phq_functioning",
+  "gad_1", "gad_2", "gad_3",
+  "gad_4", "gad_5", "gad_6",
+  "gad_7", "gad_functioning", "gad_check",
+  
+  # --- Wellbeing & Support Scales: SWEMWBS & MSPSS ---
+  "swemwbs_1", "swemwbs_2", "swemwbs_3",
+  "swemwbs_4", "swemwbs_5", "swemwbs_6",
+  "swemwbs_7", "mspss_1", "mspss_2",
+  "mspss_3", "mspss_4", "mspss_5",
+  "mspss_6", "mspss_7", "mspss_8",
+  "mspss_9", "mspss_10", "mspss_11",
+  "mspss_12",
+  
+  # --- Other Psychometric Scales: PILS, EPOCH, GQ, PCS ---
+  "pils_1", "pils_2", "pils_3",
+  "pils_4", "pils_5", "pils_6",
+  "pils_7", "pils_8", "pils_9",
+  "pils_10", "pils_11", "pils_12",
+  "epoch_o1", "epoch_o2", "epoch_o3",
+  "epoch_o4", "epoch_h1", "epoch_h2",
+  "epoch_h3", "epoch_h4", "epoch_p1",
+  "epoch_p2", "epoch_p3", "epoch_p4",
+  "gq_1", "gq_2", "gq_3",
+  "gq_4", "gq_5", "gq_6",
+  "pcs_1", "pcs_2", "pcs_3",
+  "pcs_4", "pcs_5", "pcs_6",
+  
+  # --- Scale: SES ---
+  "ses_1", "ses_2", "ses_3",
+  "ses_4", "ses_5", "ses_6",
+  "ses_7", "ses_8", "ses_9",
+  "ses_10", "ses_11", "ses_12",
+  "ses_13", "ses_14", "ses_15",
+  "ses_16", "ses_17", "ses_18",
+  "ses_19",
+  
+  # --- Feedback: Dataset A (Templeton 2) ---
+  "feedback1_all_helpful_templeton2_A", "feedback2_recommend_templeton2_A", "feedback3_most_helpful_lesson_templeton2_A",
+  "feedback4_least_helpful_lesson_templeton2_A", "feedback5_confusing_templeton2_A", "feedback6_favorite_thing_templeton2_A",
+  "feedback6_group_leader_templeton2_A", "feedback6_life_skills_templeton2_A", "feedback6_socializing_templeton2_A",
+  "feedback6_other_templeton2_A", "feedback7_change_templeton2_A", "feedback7_moresessions_templeton2_A",
+  "feedback7_widersessions_templeton2_A", "feedback7_moregifts_templeton2_A", "feedback7_foodsnacks_templeton2_A",
+  "feedback7_funativities_templeton2_A", "feedback7_change_other_templeton2_A", "feedback8_other_comments_templeton2_A",
+  
+  # --- Feedback: Dataset B (Wellsprings) ---
+  "feedback1_all_helpful_wellsprings_B", "feedback2_recommend_wellsprings_B", "feedback3_confusing_wellsprings_B",
+  "feedback4_enjoy_wellsprings_B", "feedback5_skilled_facilitators_wellsprings_B", "feedback6_enough_time_wellsprings_B",
+  "feedback7_life_influence_wellsprings_B", "feedback8_gains_wellsprings_B", "feedback9_other_comments_wellsprings_B",
+  
+  # --- Feedback: Dataset C (Anansi Trial 1) ---
+  # Anansi1_C
+  "feedback1_all_helpful_anansi1_C", "feedback2_recommend_anansi1_C",
+  "feedback3_most_helpful_lesson_anansi1_C", "feedback4_least_helpful_lesson_anansi1_C",
+  "feedback5_confusing_anansi1_C", "feedback6_favorite_thing_anansi1_C",
+  "feedback6_favorit_groupleader_anansi1_C","feedback6_favorite_lifeskills_anansi1_C", 
+  "feedback6_favorite_socialising_anansi1_C","feedback6_favorite_thing_other_anansi1_C",
+  "feedback7_change_anansi1_C", "feedback7_moresessions_anansi1_C",
+  "feedback7_morecontent_anansi1_C", "feedback7_funactivities_anansi1_C",
+  "feedback7_change_other_anansi1_C", "feedback8_other_comments_anansi1_C"
+ 
+)
+
+# Funnel the dataset through the whitelist 
+mhdp_data <- mhdp_data %>% 
+  select(c(master_cols, everything()))
+
+mhdp_data <- mhdp_data %>%
+  select(-c(169, 170))
+
+colnames(mhdp_data)
+
+cat("✓ Variables coalesced, renamed, and strictly filtered using whitelist.\n\n")
 
 #-------------------------------------------------------------------------------
 # 8. FIX CONDITIONS AND CLEANUP DEMOGRAPHICS
@@ -340,18 +485,26 @@ mhdp_data <- mhdp_data %>%
 cat("\nPost-cleanup Condition Distribution by Project:\n")
 print(table(mhdp_data$condition, mhdp_data$project))
 
+# Convert timepoint to numeric
+mhdp_data$timepoint <- as.numeric(as.character(mhdp_data$timepoint))
+
+
 # Review Time Points
 cat("\nTimepoints across projects:\n")
 cat("Templeton 2:\n"); print(table(mhdp_data$timepoint[mhdp_data$project == "Templeton_2"]))
 cat("Wellsprings:\n"); print(table(mhdp_data$timepoint[mhdp_data$project == "Wellsprings"]))
 cat("Anansi 1 (Before Filtering):\n"); print(table(mhdp_data$timepoint[mhdp_data$project == "Anansi_1"]))
 
-# Remove Anansi 1 six months follow-up (timepoint 28)
-mhdp_data <- mhdp_data %>%
-  filter(!(project == "Anansi_1" & timepoint == 28))
+# Remove Anansi 1 six months follow-up (timepoint 28) 
+# This issue at timepoint 6
+# was fixed after re-cleaning the dataset, so this step is no longer necessary.
+# If we need to reintroduce it, we can uncomment the code below.
 
-cat("\nAnansi 1 Timepoints (After Filtering):\n")
-print(table(mhdp_data$timepoint[mhdp_data$project == "Anansi_1"]))
+#mhdp_data <- mhdp_data %>%
+#  filter(!(project == "Anansi_1" & timepoint == 28))
+
+# cat("\nAnansi 1 Timepoints (After Filtering):\n")
+# print(table(mhdp_data$timepoint[mhdp_data$project == "Anansi_1"]))
 
 # Introduce Dataset grouping column
 mhdp_data <- mhdp_data %>%
@@ -401,7 +554,7 @@ print(table(mhdp_data$gender, mhdp_data$project))
 cat("\n8. EXPORTING FINAL DATASET\n")
 cat(strrep("-", 80), "\n")
 
-write_xlsx(mhdp_data, "mhdp_data.xlsx")
+write_xlsx(mhdp_data, "../datasets/mhdp_data.xlsx")
 
 cat("✓ Master dataset successfully saved as 'mhdp_data.xlsx'\n")
 cat(strrep("=", 80), "\n")
@@ -411,3 +564,17 @@ cat(strrep("=", 80), "\n\n")
 ################################################################################
 # END OF SCRIPT
 ################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
