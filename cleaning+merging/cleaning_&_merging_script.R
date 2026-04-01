@@ -202,7 +202,9 @@ data23_wells <- data23_wells %>%
     
   )
 
+
 colnames(data23_wells)
+
 
 
 cat("✓ Dataset B cleaned and formatted\n\n")
@@ -311,6 +313,13 @@ data23_1 <- data23_1 %>%
 data23_1 <- data23_1 %>%
   arrange(participant_id, as.numeric(time))
 
+table(data23_1$school_name, data23_1$time)
+
+# drop time point 16, seems to have data only from Kamuku school and is causing 
+
+data23_1 <- data23_1 %>%
+  filter(time != "16")
+table(data23_1$school_name, data23_1$time)
 
 cat("✓ Dataset C cleaned and formatted\n\n")
 
@@ -352,7 +361,7 @@ mhdp_data <- mhdp_data %>%
     group       = coalesce(group, group_name),
     study_name   = coalesce(study_name, study)
   ) %>%
-  select(-c(time, school, ageuc, group_name))
+  select(-c(time, school, ageuc, group_name, study))
 
 
 
@@ -367,8 +376,7 @@ cat("✓ Variables coalesced and feedback columns renamed\n\n")
 
 master_cols <- c(
   # --- Core Identifiers & Study Metadata ---
-  "timepoint", "participant_id", "id",
-  "study", "study_name", "study_year",
+  "timepoint", "participant_id", "study_name", "study_year",
   "project", "implementer", "condition",
   "group", "group_leader", "group_leader_id",
   
@@ -446,15 +454,17 @@ master_cols <- c(
   "feedback7_change_anansi1_C", "feedback7_moresessions_anansi1_C",
   "feedback7_morecontent_anansi1_C", "feedback7_funactivities_anansi1_C",
   "feedback7_change_other_anansi1_C", "feedback8_other_comments_anansi1_C"
- 
-)
+ )
+
 
 # Funnel the dataset through the whitelist 
 mhdp_data <- mhdp_data %>% 
   select(c(master_cols, everything()))
 
+colnames(mhdp_data)
+
 mhdp_data <- mhdp_data %>%
-  select(-c(169, 170))
+  select(-c(16,167:169))
 
 colnames(mhdp_data)
 
@@ -518,16 +528,20 @@ mhdp_data <- mhdp_data %>%
   ) %>%
   select(dataset, everything())
 
+table(mhdp_data$school_name, mhdp_data$school_county)
+
 # Clean up School Counties
 mhdp_data <- mhdp_data %>%
   mutate(
     school_county = case_when(
       project == "Wellsprings" & school_name == "ElbargonNakuru" ~ "Nakuru",
       project == "Wellsprings" & school_name == "OrandoKisumu"   ~ "Kisumu",
-      project == "Wellspring"  & school_name == "RidoreKisumu"   ~ "Kisumu",
+      project == "Wellsprings" & school_name == "RidoreKisumu"   ~ "Kisumu",
       TRUE ~ school_county
     )
   )
+
+table(mhdp_data$school_name, mhdp_data$school_county)
 
 cat("\nPre-cleanup Gender Distribution by Project:\n")
 print(table(mhdp_data$gender, mhdp_data$project))
