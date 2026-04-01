@@ -1,37 +1,136 @@
-# MHDP - Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions
 
+#  MHDP–Africa: Mental Health Data Project 
 
-## Overview
+## Project Title: *[Insert Your Specific Project Title]*
 
-This repository contains the resources, data analysis, and documentation for the project **"Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions."**
+##  Overview
+This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled **Provide a brief description of the project.  
+What is the research about? What problem does it address?  
+What are the key objectives and expected outputs? Project Title]**, conducted by the **[Team Name / Institution]**.
+The project aims to advance mental health research by generating high‑quality, FAIR‑aligned, reproducible evidence across Africa.
 
-The primary objective of this project is to leverage data science and digital technologies to create scalable mental health interventions specifically tailored for youth populations in Africa.
+---
 
-## Affiliations & Support
+## Project Information
+- **Project Name:**  
+- **Team Name:**  
+- **Repository Name:**  
+- **Principal Investigator(s):**  
+- **Institution(s):**  
+- **Contact Email:**  
 
-This project is part of the **Mental Health Data Prize - Africa**, an initiative focusing on transforming lives in Africa through research.
+---
 
-**Organized and Supported by:**
-*   **[APHRC](https://aphrc.org/)**
-*   **[Wellcome](https://wellcome.org/)**
-*   **[Shamiri Institute](https://www.shamiri.institute/)**
+## Repository Structure
 
-## Contributors
+This repository follows the standardized MHDP-Africa structure:
+```
+├── data/
+│   ├── raw/
+│   └── processed/
+├── scripts/
+├── results/
+│   ├── figures/
+│   ├── tables/
+│   └── models/
+├── metadata/
+├── LICENSE
+└── CITATION.cff
+```
+### Folder Descriptions
 
-*   **Shadrack Lilan**
-*   **Veronicah Ngatia**
-*   **Rachael Kilonzo**
-*   **Nickson Mugambi**
-*   **Faith Kamau**
- 
-## Project Goals
+- data/raw/ → Original, unmodified data (do not edit)
+- data/processed/ → Cleaned datasets
+- scripts/ → Code and analysis workflows
+- results/ → Outputs (tables, figures)
+- metadata/ → Documentation (codebook, metadata)
 
-1.  **Data-Driven Insights:** Utilizing mental health datasets to identify patterns, risk factors, and opportunities for intervention.
-2.  **Digital Tools:** Developing or analyzing digital platforms that facilitate access to mental health support.
-3.  **Scalability:** Ensuring solutions can be effectively deployed to large populations across the region.
+---
 
-## Analysis
+## Data Description
 
-*   **Languages:** - R
-*   **Dataset:** - https://osf.io/4c3sk/files/tq7pr
-*   **Analysis Script:** - https://osf.io/4c3sk/files/j7ywt
+- Type of Data:
+- Unit of Analysis:
+- Geographic Coverage:
+- Time Period:
+- Summary:
+
+---
+
+## Reproducibility Instructions
+
+1. Place data in `data/processed/`
+2. Run scripts in order:
+   - preprocessing
+   - analysis
+   - visualization
+3. Outputs saved in `results/`
+
+---
+
+## Requirements
+
+- Software:
+- Packages:
+
+Example:
+pip install -r requirements.txt
+
+---
+
+## Metadata and Documentation
+
+See `metadata/` for:
+- Codebook
+- Metadata document
+
+---
+
+## Data Access
+
+- Access Level:
+- Instructions:
+- License:
+
+---
+
+## Related Resources
+
+- OSF:
+- Parent Repo:
+- Publications:
+
+---
+
+## Citation
+
+[Author(s)] (Year). Project Title. Repository. DOI/URL
+
+---
+
+## License
+
+- Code:
+- Data:
+
+---
+
+## Acknowledgements
+
+- MHDP-Africa
+- APHRC
+
+---
+
+## Contact
+
+- Name:
+- Email:
+
+---
+
+## Notes
+
+- Do not modify raw data
+- All steps must be reproducible
+
