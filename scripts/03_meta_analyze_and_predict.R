@@ -208,7 +208,7 @@ p_lmm <- ggplot(pred_piecewise, aes(x = x, y = predicted, color = group)) +
   scale_color_manual(values = c("Shamiri" = "#9A8EE6", "TAU" = "#132964")) + scale_fill_manual(values = c("Shamiri" = "#9A8EE6", "TAU" = "#132964")) +
   labs(title = "Predicted PHQ-8 Trajectory (Active Phase)", x = "Weeks", y = "Predicted PHQ Score", color = "Condition", fill = "Condition") +
   theme_minimal(base_size = 14) + theme(legend.position = "bottom")
-ggsave("../plots/lmm_piecewise_trajectory.png", p_lmm, width = 10, height = 6, dpi = 300)
+ggsave("../results/models/lmm_piecewise_trajectory.png", p_lmm, width = 10, height = 6, dpi = 300)
 
 
 #-------------------------------------------------------------------------------
@@ -258,7 +258,7 @@ doc <- read_docx() %>%
   body_add_par("5. Attrition Analysis (Logistic Regression)", style = "heading 2") %>%
   body_add_flextable(flextable(tidy_attrition) %>% autofit())
 
-print(doc, target = "../results/Meta_Analysis_and_Models.docx")
+print(doc, target = "../results/models/Meta_Analysis_and_Models.docx")
 
 cat("✓ Word document successfully saved to '../results/Meta_Analysis_and_Models.docx'\n")
 cat(strrep("=", 80), "\n")

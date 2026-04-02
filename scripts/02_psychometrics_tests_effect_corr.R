@@ -289,7 +289,7 @@ doc <- read_docx() %>%
   )
 
 # Save the document
-print(doc, target = "../results/Psychometrics_and_EffectSizes.docx")
+print(doc, target = "../results/tables/Psychometrics_and_EffectSizes.docx")
 
 cat("✓ Word document successfully saved to '../results/Psychometrics_and_EffectSizes.docx'\n")
 cat(strrep("=", 80), "\n")

@@ -167,7 +167,7 @@ plot_gender <- function(data_subset, title_text, filename) {
     theme_minimal(base_size = 14) +
     theme(legend.position = "none")
   
-  ggsave(paste0("../plots/", filename), p, width = 8, height = 6, dpi = 300)
+  ggsave(paste0("../results/figures/", filename), p, width = 8, height = 6, dpi = 300)
 }
 
 # Full Sample Gender Plot
@@ -217,7 +217,7 @@ ggplot(combined_comp, aes(x = time_label, y = prevalence, fill = condition)) +
   theme_minimal(base_size = 14) +
   theme(legend.position = "bottom")
 
-ggsave("../plots/baseline_endline_comparison.png", width = 10, height = 7, dpi = 300)
+ggsave("../results/figures/baseline_endline_comparison.png", width = 10, height = 7, dpi = 300)
 cat("✓ Prevalence comparison plot saved\n\n")
 
 
@@ -253,7 +253,7 @@ generate_trajectory_report <- function(data_subset, file_suffix, title_suffix) {
     ) %>%
     arrange(dataset, condition, timepoint)
   
-  write_xlsx(summary_df, paste0("../results/phq_gad_swemwbs", file_suffix, ".xlsx"))
+  write_xlsx(summary_df, paste0("../results/tables/phq_gad_swemwbs", file_suffix, ".xlsx"))
   
   # Plot PHQ
   p_phq <- ggplot(summary_df, aes(x = timepoint, y = mean_phq, color = condition, group = condition)) +
@@ -263,7 +263,7 @@ generate_trajectory_report <- function(data_subset, file_suffix, title_suffix) {
     facet_wrap(~ dataset, scales = "free_x") +
     labs(title = paste("PHQ Scores Across Timepoints", title_suffix), x = "Timepoint (weeks)", y = "Mean PHQ Score", color = "Condition") + 
     theme_minimal(base_size = 14) + theme(legend.position = "bottom")
-  ggsave(paste0("../plots/phq_scores", file_suffix, ".png"), p_phq, width = 10, height = 7, dpi = 300)
+  ggsave(paste0("../results/figures/phq_scores", file_suffix, ".png"), p_phq, width = 10, height = 7, dpi = 300)
   
   # Plot GAD
   p_gad <- ggplot(summary_df, aes(x = timepoint, y = mean_gad, color = condition, group = condition)) +
@@ -273,7 +273,7 @@ generate_trajectory_report <- function(data_subset, file_suffix, title_suffix) {
     facet_wrap(~ dataset, scales = "free_x") +
     labs(title = paste("GAD Scores Across Timepoints", title_suffix), x = "Timepoint (weeks)", y = "Mean GAD Score", color = "Condition") + 
     theme_minimal(base_size = 14) + theme(legend.position = "bottom")
-  ggsave(paste0("../plots/gad_scores", file_suffix, ".png"), p_gad, width = 10, height = 6, dpi = 300)
+  ggsave(paste0("../results/figures/gad_scores", file_suffix, ".png"), p_gad, width = 10, height = 6, dpi = 300)
 }
 
 # Generate for Full Sample
@@ -346,12 +346,12 @@ create_change_bar_plot <- function(prep_df, outcome_name, title_suffix) {
 # PHQ Change (Full Sample)
 phq_change_full <- prep_change_plot_data(mhdp, "phq_total")
 p_phq_change <- create_change_bar_plot(phq_change_full, "PHQ-8", "(Full Sample)")
-ggsave("../plots/phq_change_full.png", p_phq_change, width = 10, height = 6, dpi = 300)
+ggsave("../results/figures/phq_change_full.png", p_phq_change, width = 10, height = 6, dpi = 300)
 
 # GAD Change (Full Sample)
 gad_change_full <- prep_change_plot_data(mhdp, "gad_total")
 p_gad_change <- create_change_bar_plot(gad_change_full, "GAD-7", "(Full Sample)")
-ggsave("../plots/gad_change_full.png", p_gad_change, width = 10, height = 6, dpi = 300)
+ggsave("../results/figures/gad_change_full.png", p_gad_change, width = 10, height = 6, dpi = 300)
 
 
 # --- CLINICAL SUBSAMPLE CHANGE PLOTS ---
@@ -362,12 +362,12 @@ mhdp_clinical <- mhdp %>% filter(participant_id %in% clinical_ids)
 # PHQ Change (Clinical)
 phq_change_clin <- prep_change_plot_data(mhdp_clinical, "phq_total")
 p_phq_change_clin <- create_change_bar_plot(phq_change_clin, "PHQ-8", "(Clinical Subsample)")
-ggsave("../plots/phq_change_clinical.png", p_phq_change_clin, width = 10, height = 6, dpi = 300)
+ggsave("../results/figures/phq_change_clinical.png", p_phq_change_clin, width = 10, height = 6, dpi = 300)
 
 # GAD Change (Clinical)
 gad_change_clin <- prep_change_plot_data(mhdp_clinical, "gad_total")
 p_gad_change_clin <- create_change_bar_plot(gad_change_clin, "GAD-7", "(Clinical Subsample)")
-ggsave("../plots/gad_change_clinical.png", p_gad_change_clin, width = 10, height = 6, dpi = 300)
+ggsave("../results/figures/gad_change_clinical.png", p_gad_change_clin, width = 10, height = 6, dpi = 300)
 
 cat("✓ Pre-Post Change bar plots generated and saved.\n\n")
 
