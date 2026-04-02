@@ -38,10 +38,8 @@ The project aims to advance mental health research by generating high-quality, F
 - Repository Name: mhdp-shamiri-analysis
 - Principal Investigator: Tom Osborn
 - Tech Lead: Shadrack Lilan
-- Research Contact: Rachael
 - Institution(s): Shamiri
-- Contact Email: osborn@shamiri.institute, shadrack.lilan@shamiri.institute, rachael.kilonzo@shamiri.institute
-
+- Contact Email: osborn@shamiri.institute, shadrack.lilan@shamiri.institute
   
 ### Repository Structure
 
@@ -73,7 +71,7 @@ This repository follows the standardized MHDP-Africa structure:
 - Unit of Analysis: Individual students (Adolescents).
 - Geographic Coverage: Kenya (Kiambu, Kisumu, Makueni, Nairobi, and Nakuru counties).
 - Time Period: 2022 – 2023.
-- Summary: The dataset consists of ~29,000+ observations tracking students from baseline (Week 0) through active intervention (Weeks 2, 4) and longitudinal follow-up (Weeks 8, 28, 40, 52/56). Core metrics include the PHQ-8 (Depression), GAD-7 (Anxiety), and SWEMWBS (Wellbeing).
+- Summary: The dataset consists of ~29,000+ observations tracking students from baseline (Week 0) through active intervention (Weeks 2, 4) and longitudinal follow-up (Weeks 8, 28, 40, 52). Core metrics include the PHQ-8 (Depression), GAD-7 (Anxiety), and SWEMWBS (Wellbeing).
 
   
 ### Reproducibility Instructions
@@ -101,20 +99,25 @@ See `metadata/` for:
 ### Data Access
 - Access Level: [Restricted / Controlled Access]
 - Instructions: De-identified data necessary to reproduce these analyses is available [upon reasonable request / in the data/processed folder]. Due to the sensitive nature of adolescent mental health data, raw identifying data is strictly withheld.
-- License: [Insert Data License, e.g., CC BY-NC 4.0]
+- License: May be licensed under a CC BY license on publication 
 
 
 ### Related Resources
-- OSF: [Insert link to Open Science Framework pre-registration if applicable]
-- Parent Repo: [Insert link to main Shamiri repo if applicable]
-- Publications: [Insert link to pre-print or published paper if available]
+- OSF: https://osf.io/4c3sk/overview, https://osf.io/nu9tz/overview 
+- Parent Repo: https://github.com/Shamiri-Institute/digitalhub
+- Publications: https://preprints.jmir.org/preprint/95063], https://huggingface.co/shamiri-ai/models
 
 ### Citation
 - Provided once manuscript is printed.
   
+
 ### License
-Code: MIT License
-Data: [Insert Data License, e.g., CC BY-NC 4.0]
+
+**Code:** [MIT License](LICENSE)
+
+**Data:**
+- *Raw data:* Restricted – available upon request. Access is governed by a Data Use Agreement (DUA). To request access, [contact us](rachael.kilonzo@shamiri.institute) or [open a request issue](../../issues).
+- *Processed data:* [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) Free to use with attribution.
 
 
 ### Acknowledgements
