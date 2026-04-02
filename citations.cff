@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: article
+
+title: "Automated Fidelity Monitoring of Lay-Delivered Mental Health Interventions Using Large Language Models: Development and Pilot Validation of shamiriAI"
+
+authors:
+  - family-names: "S"
+    given-names: "Lilan"
+  - family-names: "Mochama"
+    given-names: "B"
+  - family-names: "Osborn"
+    given-names: "T"
+  - family-names: "Mmbone"
+    given-names: "W"
+  - family-names: "Kilonzo"
+    given-names: "R"
+  - family-names: "Kamau"
+    given-names: "F"
+  - family-names: "Daya"
+    given-names: "R"
+  - family-names: "Wasanga"
+    given-names: "C"
+
+date-released: 2026-03-10
+
+identifiers:
+  - type: doi
+    value: "10.2196/preprints.95063"
+    description: "JMIR Preprints DOI"
+  - type: url
+    value: "https://preprints.jmir.org/preprint/95063"
+    description: "JMIR Preprints URL"
+
+url: "https://preprints.jmir.org/preprint/95063"
+
+repository-artifact: "https://doi.org/10.2196/preprints.95063"
+
+journal: "JMIR Preprints"
+
+license-url: "https://preprints.jmir.org/preprint/95063"
+
+abstract: "Preprint currently under peer review at JMIR Publications. Redistribution prohibited except for review purposes."
