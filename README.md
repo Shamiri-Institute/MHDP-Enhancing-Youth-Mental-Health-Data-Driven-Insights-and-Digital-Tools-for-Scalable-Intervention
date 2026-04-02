@@ -4,21 +4,29 @@
 
 ## Overview
 
-This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled **Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions**.
+This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled **Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions**. Additionally, these repository links to t
+
+This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions. Additionally, this repository links to the overarching goal of the project: utilizing these data-driven insights to build the key [ShamiriOS](https://github.com/Shamiri-Institute/digitalhub) and [ShamiriAI—digital](https://huggingface.co/shamiri-ai/models) infrastructure designed to enable precision mental healthcare delivery at scale.
+
 
 ***What is the research about?***
-This project evaluates the effectiveness of a school-based, lay-provider mental health intervention ("Shamiri") compared to Treatment As Usual (TAU). It synthesizes longitudinal survey data from three distinct clinical trials: Templeton 2 (2022), Wellsprings (2023), and Anansi Trial 1 (2023).
+While the broader and key role of the project is to develop digital ecosystems for mental health logistics, this specific repository houses the secondary data analysis and insights generation. It evaluates the effectiveness of a school-based, lay-provider mental health intervention ("Shamiri") compared to Treatment As Usual (TAU). It synthesizes longitudinal survey data (over 6,000 participants) from three distinct clinical trials: dataset A (2022), dataset B (2023), and dataset C (2023). The insights generated here identify which interventions work best, for whom, and under what conditions, serving as the foundation for the ShamiriAI matching algorithms.
 
 ***What problem does it address?***
-It addresses the high prevalence of depression and anxiety among adolescents in Sub-Saharan Africa by providing robust, meta-analytic evidence on the scalability and long-term efficacy of brief, lay-provider interventions.
+This project addresses two deeply connected problems in Sub-Saharan Africa:
+The Clinical Gap: The high prevalence of depression and anxiety among adolescents, requiring robust, meta-analytic evidence to prove that brief, lay-provider interventions are highly effective and scalable.
+The Infrastructure Gap: The lack of affordable, adaptable digital platforms for community-based mental health delivery. Currently, task-shifted care relies on fragmented tools (spreadsheets, WhatsApp) prone to data loss. This research powers shamiriOS, replacing these ineffective workflows with a unified platform for supervision, attendance, triage, and real-time clinical monitoring.
 
 ***What are the key objectives and expected outputs?***
-The primary objectives are to:
-- Standardize and merge psychometric data (PHQ-8, GAD-7, SWEMWBS) across three distinct trials.
+- The primary objectives of the Data Insights (Repository) are to:
+- Standardize and merge psychometric data (PHQ-8, GAD-7, SWEMWBS) across three distinct trials to create a harmonized dataset.
 - Establish baseline prevalence rates for clinical depression and anxiety across 5 Kenyan counties.
 - Calculate within-group and between-group effect sizes (Cohen's d) across multiple timepoints (up to 56 weeks).
-- Conduct random-effects meta-analyses (overall and by age/gender subgroups) and longitudinal Linear Mixed Models (LMMs) to determine symptom trajectories.
-- Outputs include automated Word documents with publication-ready statistical tables and high-resolution trajectory visualizations.
+- Conduct random-effects meta-analyses and longitudinal Linear Mixed Models (LMMs) to understand individual differences in intervention outcomes (by age and gender).
+- Output automated, publication-ready statistical tables and high-resolution trajectory visualizations.
+- The primary objectives of the Broader Digital Project are to:
+- Translate these clinical insights into ShamiriAI to drive targeted therapeutic interventions and optimize patient-provider matching.
+- Deploy shamiriOS to connect implementers, providers, and youths via real-time dashboards, streamlining community-based mental healthcare delivery.
 
 The project aims to advance mental health research by generating high-quality, FAIR-aligned, reproducible evidence across Africa.
 
@@ -26,14 +34,14 @@ The project aims to advance mental health research by generating high-quality, F
 - Project Name: MHDP - Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions
 - Team Name: Shamiri 
 - Repository Name: mhdp-shamiri-analysis
-- Principal Investigator / Lead Analyst: Tom Osborn
+- Principal Investigator: Tom Osborn
+- Tech Lead: Shadrack Lilan
+- Research Contact: Rachael
 - Institution(s): Shamiri
-- Contact Email: osborn.shamiri.institute
+- Contact Email: osborn.shamiri.institute, shadrack.lilan@shamiri.institute, rachael.kilonzo@shamiri.institute
 
   
 ### Repository Structure
-This repository follows the standardized MHDP-Africa structure:
-## Repository Structure
 
 This repository follows the standardized MHDP-Africa structure:
 ```
@@ -78,7 +86,7 @@ This repository follows the standardized MHDP-Africa structure:
 
 
 ### Requirements
-- Software: R (>= 4.1.0), RStudio
+- Software: R (4.5.2), RStudio
 - Packages: The scripts utilize the pacman package manager to automatically install missing dependencies. Key packages include: tidyverse, readxl, writexl, psych, lsr, meta, lme4, lmerTest, ggeffects, officer, flextable, broom.mixed, and conflicted.
 
 
@@ -100,8 +108,8 @@ See `metadata/` for:
 - Publications: [Insert link to pre-print or published paper if available]
 
 ### Citation
-- [Author(s)] (Year). Project Title. Repository. DOI/URL
-
+- Provided once manuscript is printed.
+  
 ### License
 Code: MIT License
 Data: [Insert Data License, e.g., CC BY-NC 4.0]
