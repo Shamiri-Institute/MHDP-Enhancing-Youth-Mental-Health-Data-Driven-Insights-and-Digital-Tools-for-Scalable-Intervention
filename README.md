@@ -38,7 +38,7 @@ The project aims to advance mental health research by generating high-quality, F
 - Tech Lead: Shadrack Lilan
 - Research Contact: Rachael
 - Institution(s): Shamiri
-- Contact Email: osborn.shamiri.institute, shadrack.lilan@shamiri.institute, rachael.kilonzo@shamiri.institute
+- Contact Email: osborn@shamiri.institute, shadrack.lilan@shamiri.institute, rachael.kilonzo@shamiri.institute
 
   
 ### Repository Structure
