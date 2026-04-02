@@ -4,7 +4,9 @@
 
 ## Overview
 
-This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled Evaluating the Longitudinal Effectiveness of the Shamiri Mental Health Intervention for Kenyan Adolescents, conducted by the Shamiri Institute.
+This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled **Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions 
+ conducted by the Shamiri Institute.
+
 What is the research about?
 This project evaluates the effectiveness of a school-based, lay-provider mental health intervention ("Shamiri") compared to Treatment As Usual (TAU). It synthesizes longitudinal survey data from three distinct clinical trials: Templeton 2 (2022), Wellsprings (2023), and Anansi Trial 1 (2023).
 What problem does it address?
