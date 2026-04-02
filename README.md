@@ -1,4 +1,4 @@
-MHDP–Africa: Mental Health Data Project
+# MHDP–Africa: Mental Health Data Project
 Project Title: Evaluating the Longitudinal Effectiveness of the Shamiri Mental Health Intervention for Kenyan Adolescents
 Overview
 This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled Evaluating the Longitudinal Effectiveness of the Shamiri Mental Health Intervention for Kenyan Adolescents, conducted by the Shamiri Institute.
