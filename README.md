@@ -33,15 +33,14 @@ The project aims to advance mental health research by generating high-quality, F
   
 ### Repository Structure
 This repository follows the standardized MHDP-Africa structure:
-code
-Text
-├── data/
+## Repository Structure
+
+This repository follows the standardized MHDP-Africa structure:
+```
+├── datasets/
 │   ├── raw/
 │   └── processed/
 ├── scripts/
-│   ├── 01_mhdp_descriptives_and_plots.R
-│   ├── 02_mhdp_psychometrics_and_stats.R
-│   └── 03_mhdp_meta_analysis_and_lmms.R
 ├── results/
 │   ├── figures/
 │   ├── tables/
@@ -49,6 +48,7 @@ Text
 ├── metadata/
 ├── LICENSE
 └── CITATION.cff
+```
 
 ### Folder Descriptions
 - data/raw/ → Original, unmodified Excel datasets (Templeton, Wellsprings, Anansi). (Do not edit)
