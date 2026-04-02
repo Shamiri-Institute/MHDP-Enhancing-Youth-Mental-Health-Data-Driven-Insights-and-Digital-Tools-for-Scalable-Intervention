@@ -112,12 +112,10 @@ See `metadata/` for:
   
 
 ### License
-
-**Code:** [MIT License](LICENSE)
-
-**Data:**
-- *Raw data:* Restricted – available upon request. Access is governed by a Data Use Agreement (DUA). To request access, [contact us](rachael.kilonzo@shamiri.institute) or [open a request issue](../../issues).
-- *Processed data:* [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) Free to use with attribution.
+- Code: [MIT License](LICENSE)
+- Data:
+    - *Raw data:* Restricted – available upon request. Access is governed by a Data Use Agreement (DUA). To request access, [contact us](rachael.kilonzo@shamiri.institute) or [open a request issue](../../issues).
+    - *Processed data:* [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/) Free to use with attribution.
 
 
 ### Acknowledgements
