@@ -54,17 +54,17 @@ cat("1. IMPORTING DATASETS\n")
 cat(strrep("-", 80), "\n")
 
 # Dataset A: Templeton 2 Phase 2 (2022)
-data22        <- read_excel("../datasets/Templeton_2_Phase_2_Long_dataset.xlsx", col_types = "text")    
-school_info22 <- read_excel("../datasets/school_info_2022.xlsx")
+data22        <- read_excel("../datasets/raw/Templeton_2_Phase_2_Long_dataset.xlsx", col_types = "text")    
+school_info22 <- read_excel("../datasets/raw/school_info_2022.xlsx")
 cat("✓ Dataset A (Templeton 2) loaded:", nrow(data22), "rows\n")
 
 # Dataset B: Wellsprings (2023)
-data23_wells  <- read_excel("../datasets/WellspringLongUnimputedPrepped.xlsx", col_types = "text") 
+data23_wells  <- read_excel("../datasets/raw/WellspringLongUnimputedPrepped.xlsx", col_types = "text") 
 cat("✓ Dataset B (Wellsprings) loaded:", nrow(data23_wells), "rows\n")
 
 # Dataset C: Anansi Trial 1 (2023) 
-data23_1 <- read_csv("../datasets/Anansi_basto1yfu_2023Trial1.csv", col_types = cols(.default = "c"))
-school_info23 <- read_excel("../datasets/school_info_2023.xlsx")
+data23_1 <- read_csv("../datasets/raw/Anansi_basto1yfu_2023Trial1.csv", col_types = cols(.default = "c"))
+school_info23 <- read_excel("../datasets/raw/school_info_2023.xlsx")
 cat("✓ Dataset C (Anansi Trial 1) loaded:", nrow(data23_1), "rows\n\n")
 
 
@@ -568,7 +568,7 @@ print(table(mhdp_data$gender, mhdp_data$project))
 cat("\n8. EXPORTING FINAL DATASET\n")
 cat(strrep("-", 80), "\n")
 
-write_xlsx(mhdp_data, "../datasets/mhdp_data.xlsx")
+write_xlsx(mhdp_data, "../datasets/processed/mhdp_data.xlsx")
 
 cat("✓ Master dataset successfully saved as 'mhdp_data.xlsx'\n")
 cat(strrep("=", 80), "\n")

@@ -41,7 +41,7 @@ cat(strrep("=", 80), "\n")
 cat("1. IMPORTING AND PREPARING DATASET\n")
 cat(strrep("-", 80), "\n")
 
-mhdp <- read_excel("../datasets/mhdp_data.xlsx", col_types = "text")
+mhdp <- read_excel("../datasets/processed/mhdp_data.xlsx", col_types = "text")
 
 # Safely convert columns to numeric
 mhdp <- mhdp %>%
