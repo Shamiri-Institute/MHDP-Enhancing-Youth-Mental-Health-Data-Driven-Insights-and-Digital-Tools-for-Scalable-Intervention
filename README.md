@@ -1,4 +1,4 @@
-# MHDP–Africa: Mental Health Data Project
+# MHDP–Africa: Mental Health Data   Prize Project
 
 ## Project Title: Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions
 
@@ -6,29 +6,29 @@
 
 This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled **Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions**.
 
-**What is the research about?**
+***What is the research about?***
 This project evaluates the effectiveness of a school-based, lay-provider mental health intervention ("Shamiri") compared to Treatment As Usual (TAU). It synthesizes longitudinal survey data from three distinct clinical trials: Templeton 2 (2022), Wellsprings (2023), and Anansi Trial 1 (2023).
 
-** *What problem does it address?* **
+***What problem does it address?***
 It addresses the high prevalence of depression and anxiety among adolescents in Sub-Saharan Africa by providing robust, meta-analytic evidence on the scalability and long-term efficacy of brief, lay-provider interventions.
 
-** *What are the key objectives and expected outputs?* **
+***What are the key objectives and expected outputs?***
 The primary objectives are to:
-Standardize and merge psychometric data (PHQ-8, GAD-7, SWEMWBS) across three distinct trials.
-Establish baseline prevalence rates for clinical depression and anxiety across 5 Kenyan counties.
-Calculate within-group and between-group effect sizes (Cohen's d) across multiple timepoints (up to 56 weeks).
-Conduct random-effects meta-analyses (overall and by age/gender subgroups) and longitudinal Linear Mixed Models (LMMs) to determine symptom trajectories.
-Outputs include automated Word documents with publication-ready statistical tables and high-resolution trajectory visualizations.
+- Standardize and merge psychometric data (PHQ-8, GAD-7, SWEMWBS) across three distinct trials.
+- Establish baseline prevalence rates for clinical depression and anxiety across 5 Kenyan counties.
+- Calculate within-group and between-group effect sizes (Cohen's d) across multiple timepoints (up to 56 weeks).
+- Conduct random-effects meta-analyses (overall and by age/gender subgroups) and longitudinal Linear Mixed Models (LMMs) to determine symptom trajectories.
+- Outputs include automated Word documents with publication-ready statistical tables and high-resolution trajectory visualizations.
 
 The project aims to advance mental health research by generating high-quality, FAIR-aligned, reproducible evidence across Africa.
 
 ### Project Information
-- Project Name: MHDP - Shamiri Intervention Analysis
-- Team Name: Shamiri Institute Research Team
+- Project Name: MHDP - Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions
+- Team Name: Shamiri 
 - Repository Name: mhdp-shamiri-analysis
-- Principal Investigator / Lead Analyst: Rachael Kilonzo
-- Institution(s): Shamiri Institute
-- Contact Email: rachael.kilonzo@shamiri.institute
+- Principal Investigator / Lead Analyst: Tom Osborn
+- Institution(s): Shamiri
+- Contact Email: osborn.shamiri.institute
 
   
 ### Repository Structure
