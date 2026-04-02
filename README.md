@@ -10,9 +10,11 @@ This repository contains the code, metadata, and analysis outputs for the MHDPâ€
 
 
 ***What is the research about?***
+
 While the broader and key role of the project is to develop digital ecosystems for mental health logistics, this specific repository houses the secondary data analysis and insights generation. It evaluates the effectiveness of a school-based, lay-provider mental health intervention ("Shamiri") compared to Treatment As Usual (TAU). It synthesizes longitudinal survey data (over 6,000 participants) from three distinct clinical trials: dataset A (2022), dataset B (2023), and dataset C (2023). The insights generated here identify which interventions work best, for whom, and under what conditions, serving as the foundation for the ShamiriAI matching algorithms.
 
 ***What problem does it address?***
+
 This project addresses two deeply connected problems in Sub-Saharan Africa:
 The Clinical Gap: The high prevalence of depression and anxiety among adolescents, requiring robust, meta-analytic evidence to prove that brief, lay-provider interventions are highly effective and scalable.
 The Infrastructure Gap: The lack of affordable, adaptable digital platforms for community-based mental health delivery. Currently, task-shifted care relies on fragmented tools (spreadsheets, WhatsApp) prone to data loss. This research powers shamiriOS, replacing these ineffective workflows with a unified platform for supervision, attendance, triage, and real-time clinical monitoring.
