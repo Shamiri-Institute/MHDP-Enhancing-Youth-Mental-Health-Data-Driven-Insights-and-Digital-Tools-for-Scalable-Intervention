@@ -240,7 +240,7 @@ ml_data <- obj2_full %>%
   drop_na(phq_reduction, age_group, gender_cat,  home_cat, acad_cat) %>%
   mutate(across(where(is.character), as.factor))
 
-cat(sprintf("ML Algorithm trained on pure demographic complete-cases: n = %d\n", nrow(ml_data)))
+cat(sprintf("Trained on pure demographic complete-cases: n = %d\n", nrow(ml_data)))
 
 # Run the Recursive Partitioning algorithm
 tree_model <- lmtree(
@@ -253,8 +253,8 @@ cat("\n--- Detected Subgroups (Tree Nodes) ---\n")
 print(tree_model)
 
 # Export the visualization of the machine learning tree
-png("../results/objective_2/figures/MachineLearning_Subgroup_Tree.png", width = 1400, height = 900, res = 120)
-plot(tree_model, main = "Machine Learning Detected Subgroups (Treatment Response)")
+png("../results/objective_2/figures/Subgroup_Tree.png", width = 1400, height = 900, res = 120)
+plot(tree_model, main = "Detected Subgroups (Treatment Response)")
 dev.off()
 
 cat("✓ Machine Learning Tree plotted and saved to results/objective_2/figures/.\n")

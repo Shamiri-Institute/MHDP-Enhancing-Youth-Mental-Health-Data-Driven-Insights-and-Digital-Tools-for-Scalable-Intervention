@@ -110,6 +110,8 @@ obj2_colors <- c(
 cat("✓ Master dataset 'mhdp_data_2.xlsx' loaded:", nrow(mhdp), "rows\n")
 cat("✓ Duplicates removed, 'na' dropped, and conditions retained.\n\n")
 
+table(mhdp$dataset, mhdp$timepoint, useNA = "ifany") 
+table(mhdp$dataset, mhdp$condition, useNA = "ifany")
 
 #-------------------------------------------------------------------------------
 # 2. CALCULATE SCALE TOTALS & CLINICAL CUTOFFS

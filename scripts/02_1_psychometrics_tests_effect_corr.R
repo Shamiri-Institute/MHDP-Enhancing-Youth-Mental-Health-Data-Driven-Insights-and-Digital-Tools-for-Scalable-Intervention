@@ -103,10 +103,10 @@ calculate_reliability <- function(data_subset, dataset_label) {
   alpha_results <<- alpha_results %>% add_row(Dataset = dataset_label, PHQ_8 = a_phq, GAD_7 = a_gad, SWEMWBS = a_swe)
 }
 
-calculate_reliability(mhdp %>% filter(dataset == "Dataset A", timepoint == 0), "Dataset A")
-calculate_reliability(mhdp %>% filter(dataset == "Dataset B", timepoint == 0), "Dataset B")
-calculate_reliability(mhdp %>% filter(dataset == "Dataset C", timepoint == 0), "Dataset C")
-calculate_reliability(mhdp %>% filter(timepoint == 0), "Full Sample")
+calculate_reliability(mhdp %>% filter(dataset == "Dataset A", timepoint == 4), "Dataset A")
+calculate_reliability(mhdp %>% filter(dataset == "Dataset B", timepoint == 4), "Dataset B")
+calculate_reliability(mhdp %>% filter(dataset == "Dataset C", timepoint == 4), "Dataset C")
+calculate_reliability(mhdp %>% filter(timepoint == 4), "Full Sample")
 
 cat("✓ Reliability statistics computed\n\n")
 
