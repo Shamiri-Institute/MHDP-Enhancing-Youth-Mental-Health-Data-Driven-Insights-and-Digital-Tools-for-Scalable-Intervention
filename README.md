@@ -4,33 +4,28 @@
 
 ## Overview
 
-This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled **Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions**. Additionally, these repository links to t
-
-This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions. Additionally, this repository links to the overarching goal of the project: utilizing these data-driven insights to build the key [ShamiriOS](https://github.com/Shamiri-Institute/digitalhub) and [ShamiriAI—digital](https://huggingface.co/shamiri-ai/models) infrastructure designed to enable precision mental healthcare delivery at scale.
+This repository contains the code, metadata, and analysis outputs for the MHDP–Africa project titled Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions. Additionally, this repository links to the overarching goal of the project: utilizing these data-driven insights to build the key [ShamiriOS](https://github.com/Shamiri-Institute/digitalhub) and [ShamiriAI—digital](https://huggingface.co/shamiri-ai/models) digital infrastructure designed to enable precision mental healthcare delivery at scale.
 
 
 ***What is the research about?***
 
-While the broader and key role of the project is to develop digital ecosystems for mental health logistics, this specific repository houses the secondary data analysis and insights generation. It evaluates the effectiveness of a school-based, lay-provider mental health intervention ("Shamiri") compared to Treatment As Usual (TAU). It synthesizes longitudinal survey data (over 6,000 participants) from three distinct clinical trials: dataset A (2022), dataset B (2023), and dataset C (2023). The insights generated here identify which interventions work best, for whom, and under what conditions, serving as the foundation for the ShamiriAI matching algorithms.
+While the broader role of the project is to develop digital ecosystems for mental health logistics, this specific repository houses the secondary data analysis and insights generation. It synthesizes longitudinal survey data (representing over 7,000 participants) from major clinical trials conducted between 2018 and 2023 (Shamiri Datasets A, B, and C; Shamiri 1.0, 2.0, and 3.0). The insights generated here identify which low-touch, character-strength interventions work best, for whom they work best, and under what implementation conditions they remain effective, directly serving as the foundational clinical logic for the ShamiriAI matching algorithms.
 
 ***What problem does it address?***
 
-This project addresses two deeply connected problems in Sub-Saharan Africa:
-The Clinical Gap: The high prevalence of depression and anxiety among adolescents, requiring robust, meta-analytic evidence to prove that brief, lay-provider interventions are highly effective and scalable.
-The Infrastructure Gap: The lack of affordable, adaptable digital platforms for community-based mental health delivery. Currently, task-shifted care relies on fragmented tools (spreadsheets, WhatsApp) prone to data loss. This research powers shamiriOS, replacing these ineffective workflows with a unified platform for supervision, attendance, triage, and real-time clinical monitoring.
+This project addresses two deeply connected public health challenges in Sub-Saharan Africa:
+The Clinical Treatment Gap: The high prevalence of youth depression and anxiety combined with a severe lack of psychiatric resources. This requires robust, meta-analytic evidence to prove that brief, lay-provider interventions (task-shifting) are highly effective and scalable in real-world school settings.
+The Infrastructure Gap: The lack of affordable, adaptable digital platforms for community-based mental health delivery. Currently, task-shifted care relies on fragmented, error-prone tools (spreadsheets, WhatsApp). This research powers shamiriOS, replacing these ineffective workflows with a unified platform for supervision, triage, and real-time clinical monitoring.
 
 ***What are the key objectives and expected outputs?***
-- The primary objectives of the Data Insights (Repository) are to:
-- Standardize and merge psychometric data (PHQ-8, GAD-7, SWEMWBS) across three distinct trials to create a harmonized dataset.
-- Establish baseline prevalence rates for clinical depression and anxiety across 5 Kenyan counties.
-- Calculate within-group and between-group effect sizes (Cohen's d) across multiple timepoints (up to 56 weeks).
-- Conduct random-effects meta-analyses and longitudinal Linear Mixed Models (LMMs) to understand individual differences in intervention outcomes (by age and gender).
-- Output automated, publication-ready statistical tables and high-resolution trajectory visualizations.
-- The primary objectives of the Broader Digital Project are to:
-- Translate these clinical insights into ShamiriAI to drive targeted therapeutic interventions and optimize patient-provider matching.
-- Deploy shamiriOS to connect implementers, providers, and youths via real-time dashboards, streamlining community-based mental healthcare delivery.
-
-The project aims to advance mental health research by generating high-quality, FAIR-aligned, reproducible evidence across Africa.
+The primary objectives of the Data Insights (Repository) are to:
+Objective 1 (Implementation Effectiveness): Apply the "Four Enoughs" framework to test intervention scalability. Generate multi-level models comparing the efficacy of Shamiri Hubs vs. external NGO Partner delivery across different geographic and socioeconomic school contexts.
+Objective 2 (Individual Differences): Conduct classical moderator analyses (LMMs) and Machine Learning tree-based moderator analyses (Recursive Partitioning) to automatically detect distinct youth subgroups and predict personalized treatment outcomes based on age, gender, and baseline severity.
+Output: Automated, publication-ready statistical tables and high-resolution trajectory visualizations (.docx, .png).
+The primary objectives of the Broader Digital Project are to:
+Precision Care (ShamiriAI): Translate these clinical insights into algorithms to drive targeted therapeutic interventions and optimize patient-provider matching.
+Delivery & Support (shamiriOS): Deploy a digital hub to connect implementers, providers, and youths, utilizing LLMs to automate supervision and measure treatment fidelity.
+This project aims to advance mental health research by generating high-quality, FAIR-aligned, reproducible evidence across Africa.
 
 ### Project Information
 - Project Name: MHDP - Enhancing Youth Mental Health: Data-Driven Insights and Digital Tools for Scalable Interventions
@@ -50,45 +45,50 @@ This repository follows the standardized MHDP-Africa structure:
 │   └── processed/
 ├── scripts/
 ├── results/
-│   ├── figures/
-│   ├── tables/
-│   └── models/
+│   ├── objective_1/
+│   │   ├── figures/
+│   │   ├── tables/
+│   │   └── models/
+│   └── objective_2/
+│       ├── figures/
+│       ├── tables/
+│       └── models/
 ├── metadata/
 ├── LICENSE
 └── CITATION.cff
 ```
 
 ### Folder Descriptions
-- data/raw/ → Original, unmodified Excel datasets (Templeton, Wellsprings, Anansi). (Do not edit)
-- data/processed/ → Cleaned, standardized, and merged longitudinal dataset (mhdp_data.xlsx).
-- scripts/ → R code and modular analysis workflows.
-- results/ → Outputs including Word documents (.docx), Excel summaries (.xlsx), and generated trajectory plots (.png).
-- metadata/ → Documentation including codebooks and metadata summaries.
+- datasets/raw/ → Original, unmodified Excel datasets (Do not edit).
+- datasets/processed/ → Cleaned, standardized, and merged longitudinal datasets (mhdp_data.xlsx, mhdp_data_2.xlsx).
+- scripts/ → Modular R code handling data preparation, descriptive statistics, and advanced LMM / Machine Learning modeling for Objectives 1 and 2.
+- results/ → Separated by Objective, containing outputs including Word documents (.docx), Excel summaries (.xlsx), and generated trajectory/decision-tree plots (.png).
+- metadata/ → Documentation including codebooks and metadata links.
 
   
 ### Data Description
-- Type of Data: Quantitative, longitudinal self-report survey data.
-- Unit of Analysis: Individual students (Adolescents).
-- Geographic Coverage: Kenya (Kiambu, Kisumu, Makueni, Nairobi, and Nakuru counties).
-- Time Period: 2022 – 2023.
-- Summary: The dataset consists of ~29,000+ observations tracking students from baseline (Week 0) through active intervention (Weeks 2, 4) and longitudinal follow-up (Weeks 8, 28, 40, 52). Core metrics include the PHQ-8 (Depression), GAD-7 (Anxiety), and SWEMWBS (Wellbeing).
+- Type of Data: Quantitative, longitudinal self-report survey data from RCTs and real-world dissemination trials.
+- Unit of Analysis: Individual youths (Aged 12–20).
+- Geographic Coverage: Kenya (Nairobi, Kiambu, Makueni, Kisumu, and Nakuru counties).
+- Time Period: 2018 – 2023.
+- Summary: The dataset consists of comprehensive longitudinal observations tracking students from baseline through active intervention (Weeks 2, 4) and long-term - follow-up (up to 3 years / 156 weeks). Core clinical metrics include the PHQ-8 (Depression) and GAD-7 (Anxiety), supplemented by wellbeing and social support scales (SWEMWBS, MSPSS).
 
   
 ### Reproducibility Instructions
-1. Place the raw datasets in data/raw/.
-2. Ensure the cleaned dataset mhdp_data.xlsx is placed in data/processed/ (or generated via the data cleaning script).
-3. Run the analysis scripts in scripts/ in sequential order:
-    - 01_mhdp_descriptives_and_plots.R (Generates sample summaries, prevalence rates, and base plots)
-    - 02_mhdp_psychometrics_and_stats.R (Calculates Cronbach's alpha, correlations, and t-tests/effect sizes)
-    - 03_mhdp_meta_analysis_and_lmms.R (Runs meta-analyses, piecewise LMMs, and attrition regressions)
-4. All tables, Word documents, and figures will automatically save to the results/ folder.
+1. Place the raw datasets in datasets/raw/.
+2. Ensure the cleaned datasets (mhdp_data.xlsx, mhdp_data_2.xlsx) are placed in datasets/processed/.
+3. Run the R analysis scripts located in scripts/ in sequential order:
+4. 01...R (Generates sample summaries, prevalence rates, and base plots)
+5. 02...R (Calculates Cronbach's alpha, baseline correlations, and t-tests/effect sizes)
+6. 03...R (Runs models)
+7. 04...R (Runs Acceptability)
+All tables, Word documents, and figures will automatically save to their respective Objective folders inside results/.
 
 
 
 ### Requirements
 - Software: R (4.5.2), RStudio
-- Packages: The scripts utilize the pacman package manager to automatically install missing dependencies. Key packages include: tidyverse, readxl, writexl, psych, lsr, meta, lme4, lmerTest, ggeffects, officer, flextable, broom.mixed, and conflicted.
-
+- Packages include: tidyverse, readxl, writexl, psych, lsr, meta, lme4, lmerTest, ggeffects, partykit (for ML trees), officer, flextable, broom.mixed, and conflicted.
 
 ### Metadata and Documentation
 See `metadata/` for:
