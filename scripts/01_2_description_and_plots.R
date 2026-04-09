@@ -75,12 +75,17 @@ mhdp <- mhdp %>%
     )
   )
 
+
+# condition and dataset
+table(mhdp$dataset, mhdp$condition, useNA = "ifany") # Check unique combinations for cleaning
 # Clean up Condition Labels (Strictly per study plan)
 mhdp <- mhdp %>%
   mutate(condition = tolower(condition)) %>%
   mutate(
     condition = case_when(
       dataset == "Shamiri_1.0" & condition == "intervention" ~ "shamiri",
+      dataset == "Shamiri_1.0" & condition == "control" ~ "study skills",
+      dataset == "Shamiri_2.0" & condition == "wellness" ~ "shamiri",
       condition == "study-skills" ~ "study skills", # Standardize spelling
       TRUE ~ condition
     )
@@ -88,18 +93,18 @@ mhdp <- mhdp %>%
   filter(!is.na(condition) & condition != "na") %>%
   # Set factor levels so Shamiri is first and Control is ALWAYS last
   mutate(condition = factor(condition, levels = c(
-    "shamiri", "gratitude", "growth", "values", "wellness", "study skills", "control"
+    "shamiri", "gratitude", "growth", "values", "study skills"
   )))
 
-# Define Official Shamiri Brand Color Palette (Using tints/shades for multiple arms)
+table(mhdp$dataset, mhdp$condition, useNA = "ifany")
+
+# Define Official  Brand Color Palette (Using tints/shades for multiple arms)
 obj2_colors <- c(
   "shamiri"      = "#132964", # Dark Blue
   "gratitude"    = "#43528A", # Lighter Blue
   "growth"       = "#E63973", # Shamiri Pink/Red
   "values"       = "#EFA3B8", # Lighter Pink
-  "wellness"     = "#9A8EE6", # Purple
-  "study skills" = "#C6BFEA", # Lighter Purple
-  "control"      = "#A6A6A6"  # Grey (Pushed to the back)
+  "study skills" = "#C6BFEA" # Lighter Purple
 )
 
 cat("✓ Master dataset 'mhdp_data_2.xlsx' loaded:", nrow(mhdp), "rows\n")
