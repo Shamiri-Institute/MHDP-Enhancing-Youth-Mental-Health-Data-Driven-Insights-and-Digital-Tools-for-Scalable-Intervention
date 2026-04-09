@@ -51,10 +51,11 @@ mhdp <- mhdp %>%
   filter(!(dataset == "Shamiri_3.0" & participant_id == "40281"))
 
 # Safely convert psychometric and demographic columns to numeric
+# (NOTE: 'gender' is explicitly excluded here so it remains text)
 mhdp <- suppressWarnings(
   mhdp %>%
     mutate(across(c(
-      age, gender, form, timepoint, financial_status, religion, siblings,
+      age, form, timepoint, financial_status, religion, siblings,
       parents_home, parents_dead, fathers_education, mothers_education,
       co_curricular, sports, perceived_academic_abilities, home,
       starts_with("phq_"), starts_with("gad_"), starts_with("swemwbs_"), 
@@ -63,6 +64,16 @@ mhdp <- suppressWarnings(
       starts_with("moc_"), starts_with("sps_"), starts_with("scs_")
     ), as.numeric))
 )
+
+# Clean and Standardize Gender Strings
+mhdp <- mhdp %>%
+  mutate(
+    gender = case_when(
+      tolower(gender) == "female" ~ "Female",
+      tolower(gender) == "male" ~ "Male",
+      TRUE ~ "Not Answered" # Catches NAs and blanks
+    )
+  )
 
 # Clean up Condition Labels (Strictly per study plan)
 mhdp <- mhdp %>%
@@ -143,28 +154,32 @@ cat("\n")
 # 4. GENDER DISTRIBUTION PLOTS (FULL & CLINICAL)
 #-------------------------------------------------------------------------------
 
-cat("4. GENERATING GENDER DISTRIBUTION PLOTS\n")
+cat("4. GENERATING GENDER DISTRIBUTION PLOTS BY DATASET\n")
 cat(strrep("-", 80), "\n")
 
 mhdp_baseline <- mhdp %>% filter(timepoint == 0)
 
 plot_gender <- function(data_subset, title_text, filename) {
   gender_data <- data_subset %>%
-    mutate(gender_label = case_when(gender == 1 ~ "Female", gender == 2 ~ "Male", TRUE ~ "Not Answered")) %>%
-    mutate(gender_label = factor(gender_label, levels = c("Female", "Male", "Not Answered"))) %>% 
-    count(gender_label) %>%
-    rename(gender = gender_label, count = n) %>%
-    mutate(percentage = round((count / sum(count)) * 100, 1), label_text = paste0(count, " (", percentage, "%)"))
+    mutate(gender = factor(gender, levels = c("Female", "Male", "Not Answered"))) %>% 
+    group_by(dataset, gender) %>%
+    summarise(count = n(), .groups = "drop_last") %>%
+    mutate(
+      percentage = round((count / sum(count)) * 100, 1), 
+      label_text = paste0(count, " (", percentage, "%)")
+    ) %>%
+    ungroup()
   
   p <- ggplot(gender_data, aes(x = gender, y = count, fill = gender)) +
     geom_bar(stat = "identity") +
-    geom_text(aes(label = label_text), vjust = -0.5, fontface = "bold") +
-    scale_fill_manual(values = c("Male" = "#9A8EE6", "Female" = "#132964", "Not Answered" = "grey80")) +
+    geom_text(aes(label = label_text), vjust = -0.5, fontface = "bold", size = 3.5) +
+    scale_fill_manual(values = c("Male" = "#9A8EE6", "Female" = "#132964", "Not Answered" = "#A6A6A6")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.15))) +
+    facet_wrap(~ dataset) +
     labs(title = title_text, x = "Gender", y = "Number of Participants") +
     theme_minimal(base_size = 14) + theme(legend.position = "none")
   
-  ggsave(paste0("../results/objective_2/figures/", filename), p, width = 8, height = 6, dpi = 300)
+  ggsave(paste0("../results/objective_2/figures/", filename), p, width = 12, height = 6, dpi = 300)
 }
 
 plot_gender(mhdp_baseline, "Gender Distribution of Participants (Full Sample)", "gender_distribution_bar.png")
@@ -179,7 +194,7 @@ cat("✓ Gender plots saved\n\n")
 # 5. PREVALENCE RATES & COMPARISON BAR CHARTS 
 #-------------------------------------------------------------------------------
 
-cat("5. CALCULATING PREVALENCE RATES\n")
+cat("5. CALCULATING PREVALENCE RATES (BASELINE VS WEEK 4)\n")
 cat(strrep("-", 80), "\n")
 
 # Baseline vs Week 4 Comparison
@@ -196,7 +211,7 @@ combined_comp <- bind_rows(dep_summary, anx_summary)
 p_prev <- ggplot(combined_comp, aes(x = time_label, y = prevalence, fill = condition)) +
   geom_bar(stat = "identity", position = "dodge") +
   geom_text(aes(label = round(prevalence, 1)), position = position_dodge(width = 0.9), vjust = -0.5, size = 3.5) +
-  scale_fill_manual(values = obj2_colors) + # STRICT BRAND COLORS
+  scale_fill_manual(values = obj2_colors) + 
   facet_wrap(~ measure) +
   labs(title = "Baseline vs Week 4 Clinical Prevalence", x = "Timepoint", y = "Prevalence (%)", fill = "Condition") +
   theme_minimal(base_size = 14) + theme(legend.position = "bottom")
@@ -233,7 +248,7 @@ generate_trajectory_report <- function(data_subset, file_suffix, title_suffix) {
   p_phq <- ggplot(summary_df, aes(x = timepoint_fac, y = mean_phq, color = condition, group = condition)) +
     geom_line(linewidth = 1.2) + geom_point(size = 2) +
     geom_errorbar(aes(ymin = ci95_phq_low, ymax = ci95_phq_high), width = 0.3) +
-    scale_color_manual(values = obj2_colors) + facet_wrap(~ dataset, scales = "free_x") + # STRICT BRAND COLORS
+    scale_color_manual(values = obj2_colors) + facet_wrap(~ dataset, scales = "free_x") +
     labs(title = paste("PHQ-8 Trajectories", title_suffix), x = "Timepoint (Weeks)", y = "Mean PHQ Score", color = "Condition") + 
     theme_minimal(base_size = 14) + theme(legend.position = "bottom")
   ggsave(paste0("../results/objective_2/figures/phq_trajectory", file_suffix, ".png"), p_phq, width = 12, height = 6, dpi = 300)
@@ -242,7 +257,7 @@ generate_trajectory_report <- function(data_subset, file_suffix, title_suffix) {
   p_gad <- ggplot(summary_df, aes(x = timepoint_fac, y = mean_gad, color = condition, group = condition)) +
     geom_line(linewidth = 1.2) + geom_point(size = 2) +
     geom_errorbar(aes(ymin = ci95_gad_low, ymax = ci95_gad_high), width = 0.3) +
-    scale_color_manual(values = obj2_colors) + facet_wrap(~ dataset, scales = "free_x") + # STRICT BRAND COLORS
+    scale_color_manual(values = obj2_colors) + facet_wrap(~ dataset, scales = "free_x") +
     labs(title = paste("GAD-7 Trajectories", title_suffix), x = "Timepoint (Weeks)", y = "Mean GAD Score", color = "Condition") + 
     theme_minimal(base_size = 14) + theme(legend.position = "bottom")
   ggsave(paste0("../results/objective_2/figures/gad_trajectory", file_suffix, ".png"), p_gad, width = 12, height = 6, dpi = 300)
@@ -274,7 +289,7 @@ create_change_plot <- function(data_subset, outcome_col, title_txt, filename) {
     geom_col(width = 0.6, position = position_dodge()) +
     geom_errorbar(aes(ymin = mean_change - se_change, ymax = mean_change + se_change), width = 0.2, linewidth = 0.8) +
     geom_hline(yintercept = 0, linetype = "dashed", color = "gray50") +
-    scale_fill_manual(values = obj2_colors) + facet_wrap(~ dataset, scales = "free_x") + # STRICT BRAND COLORS
+    scale_fill_manual(values = obj2_colors) + facet_wrap(~ dataset, scales = "free_x") +
     labs(title = title_txt, subtitle = "Negative values indicate symptom reduction (Week 4 - Baseline)", x = "Condition", y = "Mean Change", fill = "Condition") +
     theme_minimal(base_size = 14) + theme(legend.position = "bottom", axis.text.x = element_text(angle = 45, hjust = 1))
   
@@ -291,3 +306,7 @@ cat("✓ Pre-Post Change bar plots generated and saved.\n\n")
 cat(strrep("=", 80), "\n")
 cat("OBJECTIVE 2 DESCRIPTIVES SCRIPT COMPLETE\n")
 cat(strrep("=", 80), "\n\n")
+
+################################################################################
+# END OF SCRIPT
+################################################################################
