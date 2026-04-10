@@ -18,6 +18,7 @@ The Clinical Treatment Gap: The high prevalence of youth depression and anxiety 
 The Infrastructure Gap: The lack of affordable, adaptable digital platforms for community-based mental health delivery. Currently, task-shifted care relies on fragmented, error-prone tools (spreadsheets, WhatsApp). This research powers shamiriOS, replacing these ineffective workflows with a unified platform for supervision, triage, and real-time clinical monitoring.
 
 ***What are the key objectives and expected outputs?***
+
 The primary objectives of the Data Insights (Repository) are to:
 Objective 1 (Implementation Effectiveness): Apply the "Four Enoughs" framework to test intervention scalability. Generate multi-level models comparing the efficacy of Shamiri Hubs vs. external NGO Partner delivery across different geographic and socioeconomic school contexts.
 Objective 2 (Individual Differences): Conduct classical moderator analyses (LMMs) and Machine Learning tree-based moderator analyses (Recursive Partitioning) to automatically detect distinct youth subgroups and predict personalized treatment outcomes based on age, gender, and baseline severity.
